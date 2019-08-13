@@ -1,10 +1,14 @@
-from .model import *
+from networks.IBM_Audio.model import *
+import librosa
 
 model_wrpper = ModelWrapper()
-embeddings = model_wrpper._generate_embeddings("common/data/training/TIMIT/MZMB0/SA1.WAV")
+data, sr = librosa.load("common/data/training/TIMIT/MZMB0/SA1.WAV")
+print(data, sr)
+embeddings = model_wrpper.generate_embeddings(data, sr)
 
 print("------------------------>>>>>>>>>>>>>>>>")
-print(len(embeddings))
+print(embeddings)
 
 print("------------------------>>>>>>>>>>>>>>>>")
+
 print(embeddings.shape)
